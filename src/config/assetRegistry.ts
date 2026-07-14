@@ -17,7 +17,7 @@ import type { CardId, CardDefinition, EnemyId, EnemyDefinition } from '../store/
 // ────────────────────────────────────────────
 
 /** Set to a path like '/sprites/player.png' to use an image, or null for emoji */
-export const PLAYER_SPRITE: string | null = null;
+export const PLAYER_SPRITE: string | null = '/sprites/player_front.png';
 export const PLAYER_EMOJI = '🧙‍♀️';
 export const PLAYER_NAME = 'Mage';
 
@@ -144,7 +144,7 @@ export const ENEMY_REGISTRY: Record<EnemyId, EnemyDefinition> = {
     name: 'Bug Slime',
     maxHp: 35,
     emoji: '🐛',
-    image: null, // Set to '/sprites/bug_slime.png' to use image
+    image: '/sprites/bug_slime_front.png',
     bgColor: 'bg-lime-700',
     borderColor: 'border-lime-400',
     intentPattern: [

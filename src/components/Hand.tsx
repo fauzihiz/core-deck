@@ -42,15 +42,7 @@ export const Hand: React.FC = () => {
       <div className="flex justify-center mt-2">
         <button
           onClick={endTurn}
-          disabled={hand.length === 0}
-          className={`
-            px-6 py-2 rounded-xl font-bold text-sm uppercase tracking-wider
-            border-2 transition-all duration-200
-            ${hand.length === 0
-              ? 'bg-slate-800 border-slate-700 text-slate-500 cursor-not-allowed'
-              : 'bg-emerald-700 border-emerald-400 text-emerald-100 hover:bg-emerald-600 hover:scale-105 active:scale-95 shadow-lg shadow-emerald-900/50'
-            }
-          `}
+          className="px-6 py-2 rounded-xl font-bold text-sm uppercase tracking-wider border-2 bg-emerald-700 border-emerald-400 text-emerald-100 hover:bg-emerald-600 hover:scale-105 active:scale-95 shadow-lg shadow-emerald-900/50 transition-all duration-200"
         >
           ⏭ End Turn
         </button>
