@@ -12,12 +12,15 @@
 
 import type { CardId, CardDefinition, EnemyId, EnemyDefinition } from '../store/types';
 
+// Get the base URL from Vite config
+const BASE_URL = import.meta.env.BASE_URL || '/';
+
 // ────────────────────────────────────────────
 //  PLAYER SPRITE
 // ────────────────────────────────────────────
 
 /** Set to a path like '/sprites/player.png' to use an image, or null for emoji */
-export const PLAYER_SPRITE: string | null = '/sprites/player_front.png';
+export const PLAYER_SPRITE: string | null = `${BASE_URL}sprites/player_front.png`;
 export const PLAYER_EMOJI = '🧙‍♀️';
 export const PLAYER_NAME = 'Mage';
 
@@ -144,7 +147,7 @@ export const ENEMY_REGISTRY: Record<EnemyId, EnemyDefinition> = {
     name: 'Bug Slime',
     maxHp: 35,
     emoji: '🐛',
-    image: '/sprites/bug_slime_front.png',
+    image: `${BASE_URL}sprites/bug_slime_front.png`,
     bgColor: 'bg-lime-700',
     borderColor: 'border-lime-400',
     intentPattern: [
