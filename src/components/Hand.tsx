@@ -38,11 +38,20 @@ export const Hand: React.FC = () => {
         )}
       </div>
 
-      {/* End Turn button */}
-      <div className="flex justify-center mt-2">
+      {/* Energy warning + End Turn button */}
+      <div className="flex flex-col items-center gap-2 mt-2">
+        {player.energy === 0 && hand.length > 0 && (
+          <div className="text-amber-400 text-xs font-bold animate-pulse">
+            ⚡ No energy! Click End Turn →
+          </div>
+        )}
         <button
           onClick={endTurn}
-          className="px-6 py-2 rounded-xl font-bold text-sm uppercase tracking-wider border-2 bg-emerald-700 border-emerald-400 text-emerald-100 hover:bg-emerald-600 hover:scale-105 active:scale-95 shadow-lg shadow-emerald-900/50 transition-all duration-200"
+          className={`px-6 py-2 rounded-xl font-bold text-sm uppercase tracking-wider border-2 transition-all duration-200 ${
+            player.energy === 0 
+              ? 'bg-emerald-500 border-emerald-300 text-white hover:bg-emerald-400 hover:scale-105 active:scale-95 shadow-lg shadow-emerald-500/50 animate-pulse'
+              : 'bg-emerald-700 border-emerald-400 text-emerald-100 hover:bg-emerald-600 hover:scale-105 active:scale-95 shadow-lg shadow-emerald-900/50'
+          }`}
         >
           ⏭ End Turn
         </button>
