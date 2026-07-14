@@ -2,7 +2,7 @@
 // gameLogic.ts — Pure utility functions for combat math
 // ============================================================
 
-import type { CardInstance, EnemyDefinition, Intent } from './types';
+import type { CardInstance, EnemyDefinition, Intent } from './store/types';
 
 /** Shuffle an array in place (Fisher-Yates) */
 export function shuffleArray<T>(arr: T[]): T[] {

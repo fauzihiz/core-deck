@@ -9,7 +9,6 @@ import type {
   GameState,
   CardInstance,
   EnemyState,
-  GamePhase,
 } from './types';
 
 import {
@@ -307,7 +306,7 @@ export const useGameStore = create<GameState & GameActions>()(
       // ── End turn: discard hand → enemy acts ───────────────
       endTurn: () => {
         const state = get();
-        const { hand, discardPile, enemy, player, turnCount } = state;
+        const { hand, discardPile, enemy, player } = state;
 
         if (!enemy) return;
 
