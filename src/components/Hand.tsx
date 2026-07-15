@@ -17,7 +17,7 @@ export const Hand: React.FC = () => {
   return (
     <div className="shrink-0 bg-slate-900/90 border-t border-slate-700 pt-2 pb-3 px-2">
       {/* Cards container */}
-      <div className="flex items-end justify-center gap-0 min-h-[180px] overflow-visible px-2">
+      <div className="flex items-end justify-center gap-0 min-h-[180px] max-h-[50vh] overflow-y-auto overflow-visible px-2">
         {hand.map((card, i) => {
           const def = CARD_REGISTRY[card.cardId];
           const isPlayable = player.energy >= def.cost;
@@ -39,7 +39,7 @@ export const Hand: React.FC = () => {
       </div>
 
       {/* Energy warning + End Turn button */}
-      <div className="flex flex-col items-center gap-2 mt-2">
+      <div className="flex flex-col items-center gap-2 mt-2 sticky bottom-0 z-50 bg-slate-900/90">
         {player.energy === 0 && hand.length > 0 && (
           <div className="text-amber-400 text-xs font-bold animate-pulse">
             ⚡ No energy! Click End Turn →

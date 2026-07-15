@@ -73,7 +73,7 @@ export interface GameActions {
   startGame: () => void;
   resetGame: () => void;
   startCombat: () => void;
-  drawCards: (count: number) => void;
+  drawCards: (count: number, isCardEffect?: boolean) => void;
   playCard: (instanceId: string) => void;
   endTurn: () => void;
   selectDraftCard: (instanceId: string) => void;
@@ -148,7 +148,7 @@ export const useGameStore = create<GameState & GameActions>()(
       },
 
       // ── Draw cards from the deck ──────────────────────────
-      drawCards: (count: number) => {
+      drawCards: (count: number, isCardEffect?: boolean) => {
         const { deck, discardPile, hand } = get();
         let currentDeck = [...deck];
         let currentDiscard = [...discardPile];
@@ -165,20 +165,20 @@ export const useGameStore = create<GameState & GameActions>()(
           drawn.push(card);
         }
 
-        // Start of turn: reset energy and block
         const { turnCount, player } = get();
-        const newTurn = turnCount + 1;
+        const newTurn = isCardEffect ? turnCount : turnCount + 1;
+
+        // Only reset energy and block at the start of a new turn
+        const updatedPlayer = isCardEffect
+          ? player
+          : { ...player, energy: player.maxEnergy, block: 0 };
 
         set({
           deck: currentDeck,
           discardPile: currentDiscard,
           hand: [...hand, ...drawn],
           turnCount: newTurn,
-          player: {
-            ...player,
-            energy: player.maxEnergy,
-            block: 0, // block expires at start of turn
-          },
+          player: updatedPlayer,
         });
       },
 
@@ -286,7 +286,7 @@ export const useGameStore = create<GameState & GameActions>()(
 
         // Handle extra draw (e.g. Quick Draw)
         if (extraDraw > 0) {
-          setTimeout(() => get().drawCards(extraDraw), 200);
+          setTimeout(() => get().drawCards(extraDraw, true), 200);
         }
 
         // Check if enemy is dead
